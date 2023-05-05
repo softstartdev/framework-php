@@ -1,7 +1,7 @@
 {
     "name": "mx.softstart/framework-php",
     "type": "library",
-    "license": "Ninguna",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "MxSoftstart\\FrameworkPhp\\": "src/"
