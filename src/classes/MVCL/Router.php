@@ -103,7 +103,7 @@ class Router {
         $obj->setCode($decoded['code']);
         $obj->setName($decoded['class']);
         $obj->setModule($decoded['module']);
-        $obj->$action();
+        return $obj->$action();
     }
-
+    
 }
