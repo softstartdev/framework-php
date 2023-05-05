@@ -96,12 +96,14 @@ class Router {
 
         $decoded = self::decode($code);
         
+        $action = $decoded['action'];
+
         $mainController = $namespace . '\\' . $decoded['module'] . '\\' . $decoded['class'];
         $obj = new $mainController();
         $obj->setCode($decoded['code']);
         $obj->setName($decoded['class']);
         $obj->setModule($decoded['module']);
-        $obj->$decoded['action']();
+        $obj->$action();
     }
 
 }
