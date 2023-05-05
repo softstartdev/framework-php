@@ -10,7 +10,7 @@ class Router {
     
     // publico solo por si se necesita a futuro.
 
-    private static function decode($code) {
+    public static function decode($code) {
 
         if ($code == null || $code == "") $code = "common-home-index";
 
@@ -56,15 +56,24 @@ class Router {
             exit();
         }
         
+        // -----
+
+        $route['code'] = $route["module"] . "-" . $route["controller"];
+        
+        $route['class'] = ucfirst($route["module"]) . ucfirst($route['controller']) . "Controller";
+        $route['file'] = ucfirst($route["module"]) . ucfirst($route['controller']) . "Controller.php";
+        $route['path'] = $route["module"] . "/" . ucfirst($route["module"]) . ucfirst($route['controller']) . "Controller.php";
+        
         return $route;
     }
-
-    private static function loadController($path, $code) {
+    
+    public static function loadController($path, $code) {
 
         $controllerFactory = new ControllerFactory($path);
         return $controllerFactory->get($code);
     }
 
+    /*
     public static function run($path, $code) {
 
         $route  = self::decode($code);
@@ -81,5 +90,18 @@ class Router {
             exit("El controlador <b>" . $controller->getName() . "</b> no tiene definido el metodo <b>{$metodo}</b>");
         }
     }
-    
+    */
+
+    public static function run($namespace, $code) {
+
+        $decoded = self::decode($code);
+        
+        $mainController = $namespace . '\\' . $decoded['module'] . '\\' . $decoded['class'];
+        $obj = new $mainController();
+        $obj->setCode($decoded['code']);
+        $obj->setName($decoded['class']);
+        $obj->setModule($decoded['module']);
+        $obj->$decoded['action']();
+    }
+
 }
