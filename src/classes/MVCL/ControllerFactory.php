@@ -26,7 +26,7 @@ class ControllerFactory extends Factory {
         $this->module   = $parts[0];
         $this->name     = ucfirst($parts[0]) . ucfirst($parts[1]) . "Controller";
         $pathModule     = $this->path . "/" . $this->module;
-        $pathController = $pathModule . "/" . $this->name . ".class.php";
+        $pathController = $pathModule . "/" . $this->name . ".php";
         
         //fabricar el objeto
         if (is_dir($pathModule . "/")) {

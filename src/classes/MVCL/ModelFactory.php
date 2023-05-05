@@ -20,7 +20,7 @@ class ModelFactory extends Factory {
         $this->module = $parts[0];
         $this->name   = ucfirst($parts[0]) . ucfirst($parts[1]) . "Model";
         $pathModule   = $this->path . "/" . $this->module;
-        $pathModel 	  = $pathModule . "/" . $this->name . ".class.php";
+        $pathModel 	  = $pathModule . "/" . $this->name . ".php";
         
         //fabricar el objeto
         if (is_dir($pathModule . "/")) {
