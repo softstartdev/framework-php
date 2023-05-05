@@ -53,7 +53,7 @@ class Instance {
 
         $results = ibase_query($this->conn, $sql) or die (ibase_errmsg());
         //var_dump($results);
-        echo "|" . gettype($results) . "|";
+        //echo "|" . gettype($results) . "|";
         
         //$result["resource"] = $results;
         
