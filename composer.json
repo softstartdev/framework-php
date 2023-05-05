@@ -1,0 +1,15 @@
+{
+    "name": "mx.softstart/framework-php",
+    "autoload": {
+        "psr-4": {
+            "MxSoftstart\\FrameworkPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Softstart Technologies",
+            "email": "contacto@softstart.mx"
+        }
+    ],
+    "require": {}
+}
