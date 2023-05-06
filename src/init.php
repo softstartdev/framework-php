@@ -40,8 +40,8 @@ header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 
 // Load core libraries -------------------------------
 
-require_once dirname(__FILE__) . '/library/conekta/Conekta.php';
-require_once dirname(__FILE__) . '/library/VTiger/VTigerAPI.class.php';
+//require_once dirname(__FILE__) . '/library/conekta/Conekta.php';
+//require_once dirname(__FILE__) . '/library/VTiger/VTigerAPI.class.php';
 
 // Load core functions -------------------------------
 
@@ -49,6 +49,7 @@ require_once dirname(__FILE__) . '/library/VTiger/VTigerAPI.class.php';
 
 // Load core classes ---------------------------------
 
+/*
 require_once dirname(__FILE__) . '/classes/curl/Curl.class.php';
 
 require_once dirname(__FILE__) . '/classes/databases/MySQL/Instance.class.php';
@@ -87,6 +88,7 @@ require_once dirname(__FILE__) . '/classes/testing/Debug.class.php';
 
 require_once dirname(__FILE__) . '/classes/User.class.php';
 //require_once dirname(__FILE__) . '/classes/App.class.php';
+*/
 
 // Load custom configs
 

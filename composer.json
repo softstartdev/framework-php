@@ -5,8 +5,10 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "MxSoftstart\\FrameworkPhp\\": "src/"
-        }
+            "MxSoftstart\\FrameworkPhp\\": "src/",
+            "MxSoftstart\\FrameworkPhp\\AppWebservice\\": "examples/app-webservice/"
+        },
+        "files": ["examples/app-webservice/functions/helpers.php"]
     },
     "authors": [
         {

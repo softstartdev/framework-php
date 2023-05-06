@@ -36,8 +36,12 @@ class Config {
 
 	public function loadFromFile($file, $environment) {
 		
-		if (strpos($file, "-") === false) {
+		//echo $file . " ";
+		//echo '***'.strpos($file, "-")."***<br/>";
 
+		if (strpos(basename($file), "-") === false) {
+			
+			//echo "entre****";
 			// es un archivo config normal, se carga.
 
 			require_once($file);
@@ -47,14 +51,14 @@ class Config {
 
 			// es un config con entorno, verificar el entorno.
 
-			if (strpos($file, $environment) === false) {
+			if (strpos(basename($file), $environment) === false) {
 
 				// no es el environment solicitado, ignorarlo.
 
 			} else {
-
+				//echo "entre";
 				// es el environment solicitado, cargarlo.
-
+				
 				require_once($file);
 				$this->configs = array_merge($this->configs, $config);
 			}
