@@ -1,0 +1,16 @@
+@IMPORT url("common-header.css");
+@IMPORT url("common-footer.css");
+
+/* lg */
+
+/* md */
+@media screen and (max-width: 1199px) { }
+
+/* sm */
+@media screen and (max-width: 991px) { }
+
+/* xs */
+@media screen and (max-width: 767px) { }
+
+/* xxs */
+@media screen and (max-width: 500px) { }

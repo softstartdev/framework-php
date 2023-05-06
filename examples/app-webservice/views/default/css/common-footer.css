@@ -1,0 +1,33 @@
+
+/* lg */
+
+/*
+.css-page .css-bg-footer {
+    padding: 40px 0px;
+    background-color: #333;
+    color: white;
+}
+*/
+
+/* md */
+@media screen and (max-width: 1199px) { }
+
+/* sm */
+@media screen and (max-width: 991px) { }
+
+/* xs */
+@media screen and (max-width: 767px) {
+
+    /*
+    .css-page .css-bg-footer .css-footer .css-copy {
+        text-align: center;
+    }
+    
+    .css-page .css-bg-footer .css-footer .css-privacy {
+        text-align: center;
+    }
+    */
+}
+
+/* xxs */
+@media screen and (max-width: 500px) { }
