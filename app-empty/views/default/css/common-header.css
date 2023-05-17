@@ -1,0 +1,32 @@
+
+/* lg */
+
+/*
+.css-page .css-bg-header {
+    padding: 40px 0px;
+    background-color: #ddd;
+    color: white;
+}
+
+.css-page .css-bg-header .css-header .css-logo img {
+    max-width: 100%;
+}
+*/
+
+/* md */
+@media screen and (max-width: 1199px) { }
+
+/* sm */
+@media screen and (max-width: 991px) { }
+
+/* xs */
+@media screen and (max-width: 767px) {
+    /*
+    .css-page .css-bg-header .css-header .css-logo {
+        text-align: center;
+    }
+    */
+}
+
+/* xxs */
+@media screen and (max-width: 500px) { }
