@@ -4,9 +4,9 @@
  * This class manage the user session cicle life.
  */
 
- namespace MxSoftstart\FrameworkPhp\classes\enties;
+namespace MxSoftstart\FrameworkPhp\classes\enties;
 
-class User {
+abstract class User {
 	
 	// Para cada aplicación tenga su espacio de ejecución.
 	private $SESSION_NAME;

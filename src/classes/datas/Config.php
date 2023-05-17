@@ -147,5 +147,9 @@ class Config {
 		}
 	}
 	
+	public function getAll() {
+		return $this->configs;
+	}
+
 }
 ?>

@@ -32,11 +32,15 @@ use MxSoftstart\FrameworkPhp\classes\datas\Config as Config;
 use MxSoftstart\FrameworkPhp\classes\databases\Firebird\Instance as DatabaseFirebird;
 use MxSoftstart\FrameworkPhp\classes\datas\Parameters as Parameters;
 use MxSoftstart\FrameworkPhp\classes\MVCL\Router as Router;
+use MxSoftstart\FrameworkPhp\classes\MVCL\ControllerFactory;
+use MxSoftstart\FrameworkPhp\classes\MVCL\ViewFactory;
+use MxSoftstart\FrameworkPhp\classes\MVCL\LanguageFactory;
+use MxSoftstart\FrameworkPhp\classes\security\Validator;
 
 $config = new Config();
 $config->loadFromPath(dirname(__FILE__) . '/configs', 'develop');
 
-print_r($config);
+//print_r($config);
 // Database.
 
 $databaseFirebird = new DatabaseFirebird();
@@ -64,11 +68,33 @@ foreach ($classes as $item) {
 }
 */
 
+/*
+validar configuraciones minimas del framework;
+revisar helpers de getters
+*/
+
+$controllerFactory 	= new ControllerFactory("MxSoftstart\FrameworkPhp\AppWebservice\controllers");
+$modelFactory 		= new ControllerFactory("MxSoftstart\FrameworkPhp\AppWebservice\models");
+$viewFactory 		= new ViewFactory(dirname(__FILE__) . '/views', 'default');
+$languageFactory 	= new LanguageFactory(dirname(__FILE__) . '/languages', 'es');
+
+/**
+ * Las vistas solo pueden imprimirse desde este archivo.
+ */
+
+ define("IS_INDEX", true);
+ 
 // Launch -------
 
-echo Router::run(
-	"MxSoftstart\FrameworkPhp\AppWebservice\controllers",
-	Parameters::get("r", 'GET', "common-home-index")
+$decoded = Router::decode(
+	Parameters::get("r", 'GET', "common-home-index"), 
+	Router::TYPE_CONTROLLER
 );
+
+$controller = $controllerFactory->get($decoded);
+
+$action = $decoded['action'];
+
+echo $controller->$action();
 
 ?>

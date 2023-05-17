@@ -2,13 +2,33 @@
 
 namespace MxSoftstart\FrameworkPhp\classes\MVCL;
 
+use MxSoftstart\FrameworkPhp\classes\MVCL\Factory;
+
 class ModelFactory extends Factory {
-        
-    public function __construct($path) {
-        $this->path = $path;
+    
+    public function __construct($namespace) {
+
+        $this->namespace = $namespace;
     }
     
-    public function get($code) {
+    public function get($decoded, $datas = null) {
+
+        $model = $this->namespace . '\\' . $decoded['module'] . '\\' . $decoded['class'];
+        
+        $obj = new $model();
+        $obj->setNamespace($this->namespace);
+        $obj->setPath($decoded['path']);
+        $obj->setCode($decoded['code']);
+        $obj->setModule($decoded['module']);
+        $obj->setClass($decoded['class']);
+        $obj->setFile($decoded['file']);
+        $obj->setName($decoded['name']);
+
+        return $obj;
+    }
+    
+    /*
+    public function get($code, $datas = null) {
         
         //decode
         $parts = explode("-", $code);
@@ -48,6 +68,6 @@ class ModelFactory extends Factory {
             $this->showError("el modulo <b>$pathModule</b> no existe.");
         }
     }
-    
+    */
 }
 ?>

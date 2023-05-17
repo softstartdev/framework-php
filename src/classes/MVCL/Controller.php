@@ -4,9 +4,17 @@ namespace MxSoftstart\FrameworkPhp\classes\MVCL;
 
 abstract class Controller {
 	
-    private	$code	= "";
-    private	$name	= "";
-    private	$module = "";
+    private $namespace;
+
+    private $path;
+
+    private $code;
+
+    private $module;
+    
+    private $class;
+    private $file;
+    private $name;
     
     //protected $user;
     
@@ -32,20 +40,28 @@ abstract class Controller {
     
     //getters -----------------------------
     
+    public function getNamespace() {
+        return $this->namespace;
+    }
+    
+    public function setNamespace($namespace) {
+        $this->code = $namespace;
+    }
+
+    public function getPath() {
+        return $this->path;
+    }
+    
+    public function setPath($path) {
+        $this->path = $path;
+    }
+
     public function getCode() {
         return $this->code;
     }
     
     public function setCode($code) {
         $this->code = $code;
-    }
-    
-    public function getName() {
-        return $this->name;
-    }
-    
-    public function setName($name) {
-        $this->name = $name;
     }
     
     public function getModule() {
@@ -55,27 +71,51 @@ abstract class Controller {
     public function setModule($module) {
         $this->module = $module;
     }
+
+    public function getClass() {
+        return $this->class;
+    }
     
+    public function setClass($class) {
+        $this->class = $class;
+    }
+
+    public function getFile() {
+        return $this->file;
+    }
+    
+    public function setFile($file) {
+        $this->file = $file;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+    
+    public function setName($name) {
+        $this->name = $name;
+    }
+
     //methods -------------------------------
     
-    abstract function index();
+    abstract function index($datas = null);
     
     /*
-    public function render($code) {
-        
-        $headerController = loadController("common-header");
-        $footerController = loadController("common-footer");
-        
-        $this->layoutDatas['header']  = $headerController->index();
-        $this->layoutDatas['code']    = $code;
-        $this->layoutDatas['r']       = getParameter("r", "REQUEST", null);
-        $this->layoutDatas['content'] = loadView($code, $this->viewDatas);
-        $this->layoutDatas['footer']  = $footerController->index();
-        
-        return loadView("common-layout", $this->layoutDatas);
-    }
+        public function render($code) {
+            
+            $headerController = loadController("common-header");
+            $footerController = loadController("common-footer");
+            
+            $this->layoutDatas['header']  = $headerController->index();
+            $this->layoutDatas['code']    = $code;
+            $this->layoutDatas['r']       = getParameter("r", "REQUEST", null);
+            $this->layoutDatas['content'] = loadView($code, $this->viewDatas);
+            $this->layoutDatas['footer']  = $footerController->index();
+            
+            return loadView("common-layout", $this->layoutDatas);
+        }
     */
-
+    
     /*
         //TEST
         // Se usa para web services.
@@ -90,7 +130,7 @@ abstract class Controller {
             return (getParameter('callback') != null)? getParameter('callback') . "(" . $json . ")" : $json;
         }
     */
-
+    
     /*
         protected function response($code, $datas, $total = "") {
             
@@ -124,85 +164,83 @@ abstract class Controller {
         }
     */
     
-    
-    
     // Se copio del framework para que la clase sea auto contenida.
     /*
-    protected function getParameter($key, $method = 'GET', $value = null) {
-        
-        if (strpos($key, "[") == false) {
+        protected function getParameter($key, $method = 'GET', $value = null) {
             
-            if ($method == 'POST') {
-                if (isset($_POST[$key])) {
-                    $value = $_POST[$key];
+            if (strpos($key, "[") == false) {
+                
+                if ($method == 'POST') {
+                    if (isset($_POST[$key])) {
+                        $value = $_POST[$key];
+                    }
+                } else if ($method == 'REQUEST') {
+                    if (isset($_REQUEST[$key])) {
+                        $value = $_REQUEST[$key];
+                    }
+                } else {
+                    if (isset($_GET[$key])) {
+                        $value = $_GET[$key];
+                    }
                 }
-            } else if ($method == 'REQUEST') {
-                if (isset($_REQUEST[$key])) {
-                    $value = $_REQUEST[$key];
-                }
+                
             } else {
-                if (isset($_GET[$key])) {
-                    $value = $_GET[$key];
-                }
-            }
-            
-        } else {
-            
-            $key    = str_replace("]", "", $key);
-            $parts  = explode("[", $key);
-            $key    = $parts[0];
-            $subkey = $parts[1];
-            
-            if ($method == 'POST') {
-                if (isset($_POST[$key][$subkey])) {
-                    $value = $_POST[$key][$subkey];
-                }
-            } else if ($method == 'REQUEST') {
-                if (isset($_REQUEST[$key][$subkey])) {
-                    $value = $_REQUEST[$key][$subkey];
-                }
-            } else {
-                if (isset($_GET[$key][$subkey])) {
-                    $value = $_GET[$key][$subkey];
-                }
-            }
-        }
-        
-        // Para strings de tipo fecha.
-
-        if ($this->isString($value)) {
-
-            $parts = explode('/', $value);
-
-            if (count($parts) == 3) {
-                if (strlen($parts[0]) == 2 && strlen($parts[1]) == 2 && strlen($parts[2]) >= 4) {
-
-                    $day 	= $parts[0];
-                    $month 	= $parts[1];
-                    $year 	= $parts[2];
-                    
-                    $parts2 = explode(':', $year);
-                    
-                    if (strlen($parts2[0])  == 7 && strlen($parts2[1])  == 2 && strlen($parts2[2])  == 2) {
-                        $parts3 = explode(' ', $year);
-                        $value =  $parts3[0] . '-' . $month . '-' . $day . ' ' . $parts3[1];
-                    } else if(strlen($parts2[0]) == 4) {
-                        $value =  $year . '-' . $month . '-' . $day . ' 00:00:00';
+                
+                $key    = str_replace("]", "", $key);
+                $parts  = explode("[", $key);
+                $key    = $parts[0];
+                $subkey = $parts[1];
+                
+                if ($method == 'POST') {
+                    if (isset($_POST[$key][$subkey])) {
+                        $value = $_POST[$key][$subkey];
+                    }
+                } else if ($method == 'REQUEST') {
+                    if (isset($_REQUEST[$key][$subkey])) {
+                        $value = $_REQUEST[$key][$subkey];
+                    }
+                } else {
+                    if (isset($_GET[$key][$subkey])) {
+                        $value = $_GET[$key][$subkey];
                     }
                 }
             }
-        }
-        
-        return $value;
-    }
-    */
+            
+            // Para strings de tipo fecha.
 
+            if ($this->isString($value)) {
+
+                $parts = explode('/', $value);
+
+                if (count($parts) == 3) {
+                    if (strlen($parts[0]) == 2 && strlen($parts[1]) == 2 && strlen($parts[2]) >= 4) {
+
+                        $day 	= $parts[0];
+                        $month 	= $parts[1];
+                        $year 	= $parts[2];
+                        
+                        $parts2 = explode(':', $year);
+                        
+                        if (strlen($parts2[0])  == 7 && strlen($parts2[1])  == 2 && strlen($parts2[2])  == 2) {
+                            $parts3 = explode(' ', $year);
+                            $value =  $parts3[0] . '-' . $month . '-' . $day . ' ' . $parts3[1];
+                        } else if(strlen($parts2[0]) == 4) {
+                            $value =  $year . '-' . $month . '-' . $day . ' 00:00:00';
+                        }
+                    }
+                }
+            }
+            
+            return $value;
+        }
+    */
+    
     // Se copio del framework para que la clase sea auto contenida.
     /*
     private function isString($value) {
         return $value !== null && is_string($value);
     }
     */
-
+    
 }
 ?>

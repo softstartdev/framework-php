@@ -5,12 +5,20 @@ namespace MxSoftstart\FrameworkPhp\classes\MVCL;
 class Router {
     
     private $datas = array();
+
+    const TYPE_CONTROLLER   = 'controller';
+    const TYPE_MODEL        = 'model';
+    const TYPE_VIEW         = 'view';
+    const TYPE_LANGUAGE     = 'language';
     
     public function __construct() { }
     
     // publico solo por si se necesita a futuro.
-
-    public static function decode($code) {
+    
+    /**
+     * Type es 'model', ''
+     */
+    public static function decode($code, $type) {
 
         if ($code == null || $code == "") $code = "common-home-index";
 
@@ -40,15 +48,15 @@ class Router {
         // home-sendDatas (sin modulo + controlador + accion concreta): Se comprueba la existencia del archivo.
         
         if(count($parts) == 2 && $parts[0] !== "" && $parts[1] !=="") {
-            $route['module'] 	 = $parts[0];
-            $route['controller'] = $parts[1];
-            $route['action']  	 = "index";
+            $route['module'] = $parts[0];
+            $route[$type]    = $parts[1];
+            $route['action'] = "index";
         }
 
         if (count($parts) == 3 && $parts[0] !== "" && $parts[1] !== "" && $parts[2] !== "") {
-            $route['module'] 	 = $parts[0];
-            $route['controller'] = $parts[1];
-            $route['action']  	 = $parts[2];
+            $route['module'] = $parts[0];
+            $route[$type]    = $parts[1];
+            $route['action'] = $parts[2];
         }
         
         if (count($parts) > 3) {
@@ -58,22 +66,26 @@ class Router {
         
         // -----
 
-        $route['code'] = $route["module"] . "-" . $route["controller"];
+        $route['code'] = $route["module"] . "-" . $route[$type];
         
-        $route['class'] = ucfirst($route["module"]) . ucfirst($route['controller']) . "Controller";
-        $route['file'] = ucfirst($route["module"]) . ucfirst($route['controller']) . "Controller.php";
-        $route['path'] = $route["module"] . "/" . ucfirst($route["module"]) . ucfirst($route['controller']) . "Controller.php";
+        $route['class'] = ucfirst($route["module"]) . ucfirst($route[$type]) . ucfirst($type);
+        $route['file'] = ucfirst($route["module"]) . ucfirst($route[$type]) . ucfirst($type) . ".php";
+        $route['path'] = $route["module"] . "/" . ucfirst($route["module"]) . ucfirst($route[$type]) . ucfirst($type) . ".php";
+        
+        // Se conserva por motivos de compatibilidad.
+        $route['name'] = ucfirst($route["module"]) . ucfirst($route[$type]) . ucfirst($type);
         
         return $route;
     }
     
+    /*
     public static function loadController($path, $code) {
 
         $controllerFactory = new ControllerFactory($path);
         return $controllerFactory->get($code);
     }
 
-    /*
+    // Sistema de carga anterior.
     public static function run($path, $code) {
 
         $route  = self::decode($code);
@@ -92,6 +104,7 @@ class Router {
     }
     */
 
+    /*
     public static function run($namespace, $code) {
 
         $decoded = self::decode($code);
@@ -105,5 +118,6 @@ class Router {
         $obj->setModule($decoded['module']);
         return $obj->$action();
     }
-    
+    */
+
 }

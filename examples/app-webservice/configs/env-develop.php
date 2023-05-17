@@ -8,7 +8,7 @@
 
 // SERVER
 
-$config['ENVIRONMENT']['URL'] = 'http://localhost:7272/webservice-ador/';
+$config['ENVIRONMENT']['URL'] = 'http://localhost:7272/softstart-framework-php/examples/app-webservice/';
 
 // USERS
 

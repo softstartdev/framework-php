@@ -1,10 +1,33 @@
 <?php
+
+namespace MxSoftstart\FrameworkPhp\AppWebservice\controllers\common;
+
+use MxSoftstart\FrameworkPhp\AppWebservice\classes\Controller;
+
 class CommonSuccessController extends Controller {
 	
 	function __construct() {
+		
 		parent::__construct();
 	}
+
+	public function index($datas = null) {
+
+		//success
+		if (isset($_SESSION['success'])) {
+			$success = $_SESSION['success'];
+			unset($_SESSION['success']);
+		} else {
+			header("location: ./index.php");
+			exit();
+		}
+		
+		$this->viewDatas['success'] = $success;
+		
+		return $this->render($this->getCode());
+	}
 	
+	/*
 	public function index() {
 
 		$registersModel = loadModel("common-registers");
@@ -47,5 +70,6 @@ class CommonSuccessController extends Controller {
 		
 		return $this->render("common-success");
 	}
+	*/
 }
 ?>

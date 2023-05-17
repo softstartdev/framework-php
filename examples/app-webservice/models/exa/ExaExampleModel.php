@@ -1,18 +1,23 @@
 <?php
+
+namespace MxSoftstart\FrameworkPhp\AppWebservice\models\exa;
+
+use MxSoftstart\FrameworkPhp\AppWebservice\classes\Model;
+
 class ExaExampleModel extends Model {
 
     public function __construct() {
+
         parent::__construct();
     }
     
-    /*
     public function get() {
 
-        $sql = "insert your code SQL here.";
-        $resp = query($sql);
+        $sql = "SELECT * FROM EXAMPLES";
+        $resp = $this->queryFirebird($sql);
+
         return $resp;
     }
-    */
     
     /*
     public function set() {
@@ -22,5 +27,6 @@ class ExaExampleModel extends Model {
         return $resp;
     }
     */
+    
 }
 ?>

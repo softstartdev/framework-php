@@ -272,32 +272,5 @@ function getRoute(){
 }
 */
 
-/*
- * Devuelve el lenguage actual de la aplicación que puede no ser
- * el definido por defecto en la configuración de la aplicación. 
- */
-function getCodeLanguage(){
-	return $_SESSION['_LANGUAGE_'];
-}
 
-/*
- * Devuelve la ruta de una imagen desde la carpeta img de la plantilla.
- */
-function getImageTemplate($image){
-	return getPathViews() . "/" . getTemplate() . "/img/" . $image;
-}
-
-/*
- * Devuelve la ruta de un archivo css desde la carpeta css de la plantilla.
- */
-function getCssTemplate($file){
-	return getPathViews() . "/" . getTemplate() . "/css/" . $file . ".css";
-}
-
-/*
- * Devuelve la ruta de un archivo js desde la carpeta js de la plantilla.
- */
-function getJsTemplate($file){
-	return getPathViews() . "/" . getTemplate() . "/js/" . $file . ".js";
-}
 ?>

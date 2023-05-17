@@ -1,11 +1,17 @@
 <?php
+
+namespace MxSoftstart\FrameworkPhp\AppWebservice\controllers\common;
+
+use MxSoftstart\FrameworkPhp\AppWebservice\classes\Controller;
+
 class CommonErrorController extends Controller {
 	
 	function __construct() {
+		
 		parent::__construct();
 	}
 	
-	public function index() {
+	public function index($datas = null) {
 		
 		//error
 		if (isset($_SESSION['error'])) {
@@ -18,7 +24,8 @@ class CommonErrorController extends Controller {
 		
 		$this->viewDatas['error'] = $error;
 		
-		return $this->render("common-error");
+		return $this->render($this->getCode());
 	}
+	
 }
 ?>

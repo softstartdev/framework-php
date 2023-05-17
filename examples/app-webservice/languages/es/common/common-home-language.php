@@ -1,5 +1,5 @@
 <?php
 
-$l["hello_world"] = "¡Hola Mundo!";
+$l["name"] = "common-home es";
 
 ?>
