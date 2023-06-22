@@ -1,8 +1,8 @@
 <?php
 
-namespace MxSoftstart\FrameworkPhp\AppWebservice\controllers\common;
+namespace MxSoftstart\FrameworkPhp\AppEmpty\controllers\common;
 
-use MxSoftstart\FrameworkPhp\AppWebservice\classes\Controller;
+use MxSoftstart\FrameworkPhp\AppEmpty\classes\Controller;
 
 class CommonSuccessController extends Controller {
 	

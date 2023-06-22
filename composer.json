@@ -6,6 +6,7 @@
     "autoload": {
         "psr-4": {
             "MxSoftstart\\FrameworkPhp\\": "src/",
+            "MxSoftstart\\FrameworkPhp\\AppEmpty\\": "examples/app-empty/",
             "MxSoftstart\\FrameworkPhp\\AppWebservice\\": "examples/app-webservice/"
         },
         "files": ["examples/app-webservice/functions/helpers.php"]

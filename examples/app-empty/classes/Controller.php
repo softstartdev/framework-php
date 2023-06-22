@@ -1,6 +1,6 @@
 <?php
 
-namespace MxSoftstart\FrameworkPhp\AppWebservice\classes;
+namespace MxSoftstart\FrameworkPhp\AppEmpty\classes;
 
 use MxSoftstart\FrameworkPhp\classes\MVCL\Router;
 //use MxSoftstart\FrameworkPhp\classes\MVCL\ControllerFactory;
@@ -9,7 +9,7 @@ use MxSoftstart\FrameworkPhp\classes\MVCL\ViewFactory;
 //use MxSoftstart\FrameworkPhp\classes\datas\Config;
 use MxSoftstart\FrameworkPhp\classes\datas\Parameters;
 use MxSoftstart\FrameworkPhp\classes\datas\Response as Response;
-use MxSoftstart\FrameworkPhp\AppWebservice\classes\User;
+use MxSoftstart\FrameworkPhp\AppEmpty\classes\User;
 
 abstract class Controller extends  STFController {
     
@@ -90,6 +90,13 @@ abstract class Controller extends  STFController {
         global $databaseFirebird;
         
         return $databaseFirebird->query($sql);
+    }
+    
+    public function queryMySQL($sql) {
+
+        global $databaseMySQL;
+        
+        return $databaseMySQL->query($sql);
     }
     
     // -------

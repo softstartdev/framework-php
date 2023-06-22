@@ -8,7 +8,7 @@
 
 // SERVER
 
-$config['ENVIRONMENT']['URL'] = 'http://localhost:7272/softstart-framework-php/examples/app-webservice/';
+$config['ENVIRONMENT']['URL'] = 'http://localhost:7272/softstart-framework-php/examples/app-empty/';
 
 // USERS
 
@@ -19,6 +19,8 @@ $config['ENVIRONMENT']['USERS']['ROOT']['PASSWORD'] = '123456';
 
 // SERVERS DATABASES
 
+// FIREBIRD
+
 $config['ENVIRONMENT']['DATABASES']['FIREBIRD_DEFAULT']['TYPE']      = 'FIREBIRD';
 $config['ENVIRONMENT']['DATABASES']['FIREBIRD_DEFAULT']['HOST']      = 'docker-develop-firebird3-1';
 $config['ENVIRONMENT']['DATABASES']['FIREBIRD_DEFAULT']['PORT']      = '3050';
@@ -27,6 +29,17 @@ $config['ENVIRONMENT']['DATABASES']['FIREBIRD_DEFAULT']['FILE']      = 'firebird
 $config['ENVIRONMENT']['DATABASES']['FIREBIRD_DEFAULT']['NAME']      = '';
 $config['ENVIRONMENT']['DATABASES']['FIREBIRD_DEFAULT']['USER']      = 'SYSDBA';
 $config['ENVIRONMENT']['DATABASES']['FIREBIRD_DEFAULT']['PASSWORD']  = 'masterkey';
+
+// MYSQL
+
+$config['ENVIRONMENT']['DATABASES']['MYSQL_DEFAULT']['TYPE']      = 'MYSQL';
+$config['ENVIRONMENT']['DATABASES']['MYSQL_DEFAULT']['HOST']      = 'docker-develop-mariabd10-1';
+$config['ENVIRONMENT']['DATABASES']['MYSQL_DEFAULT']['PORT']      = '3366';
+$config['ENVIRONMENT']['DATABASES']['MYSQL_DEFAULT']['PATH']      = '';
+$config['ENVIRONMENT']['DATABASES']['MYSQL_DEFAULT']['FILE']      = '';
+$config['ENVIRONMENT']['DATABASES']['MYSQL_DEFAULT']['NAME']      = 'dbname';
+$config['ENVIRONMENT']['DATABASES']['MYSQL_DEFAULT']['USER']      = 'root';
+$config['ENVIRONMENT']['DATABASES']['MYSQL_DEFAULT']['PASSWORD']  = 'test';
 
 // SERVERS SMTP
 

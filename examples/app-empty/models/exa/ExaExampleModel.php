@@ -1,8 +1,8 @@
 <?php
 
-namespace MxSoftstart\FrameworkPhp\AppWebservice\models\exa;
+namespace MxSoftstart\FrameworkPhp\AppEmpty\models\exa;
 
-use MxSoftstart\FrameworkPhp\AppWebservice\classes\Model;
+use MxSoftstart\FrameworkPhp\AppEmpty\classes\Model;
 
 class ExaExampleModel extends Model {
 

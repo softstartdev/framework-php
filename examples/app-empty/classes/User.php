@@ -1,6 +1,6 @@
 <?php
 
-namespace MxSoftstart\FrameworkPhp\AppWebservice\classes;
+namespace MxSoftstart\FrameworkPhp\AppEmpty\classes;
 
 use MxSoftstart\FrameworkPhp\classes\enties\User as STFUser;
 

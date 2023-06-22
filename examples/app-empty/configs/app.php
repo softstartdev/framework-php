@@ -4,7 +4,7 @@
 
 // APP
 
-$config["APP"]["NAME"]      = 'Webservice ADOR';
+$config["APP"]["NAME"]      = 'Example Empty';
 $config["APP"]["VERSION"]   = '1.0.0';
 
 // OTHERS

@@ -30,6 +30,7 @@ require_once "../../vendor/autoload.php";
 // Config.
 use MxSoftstart\FrameworkPhp\classes\datas\Config as Config;
 use MxSoftstart\FrameworkPhp\classes\databases\Firebird\Instance as DatabaseFirebird;
+use MxSoftstart\FrameworkPhp\classes\databases\MySQL\Instance as DatabaseMySQL;
 use MxSoftstart\FrameworkPhp\classes\datas\Parameters as Parameters;
 use MxSoftstart\FrameworkPhp\classes\MVCL\Router as Router;
 use MxSoftstart\FrameworkPhp\classes\MVCL\ControllerFactory;
@@ -45,6 +46,9 @@ $config->loadFromPath(dirname(__FILE__) . '/configs', 'develop');
 
 $databaseFirebird = new DatabaseFirebird();
 $databaseFirebird->connect($config->get('ENVIRONMENT.DATABASES.FIREBIRD_DEFAULT'));
+
+$databaseMySQL = new DatabaseMySQL();
+$databaseMySQL->connect($config->get('ENVIRONMENT.DATABASES.MYSQL_DEFAULT'));
 
 // Load custom functions.
 
@@ -73,8 +77,8 @@ validar configuraciones minimas del framework;
 revisar helpers de getters
 */
 
-$controllerFactory 	= new ControllerFactory("MxSoftstart\FrameworkPhp\AppWebservice\controllers");
-$modelFactory 		= new ControllerFactory("MxSoftstart\FrameworkPhp\AppWebservice\models");
+$controllerFactory 	= new ControllerFactory("MxSoftstart\FrameworkPhp\AppEmpty\controllers");
+$modelFactory 		= new ControllerFactory("MxSoftstart\FrameworkPhp\AppEmpty\models");
 $viewFactory 		= new ViewFactory(dirname(__FILE__) . '/views', 'default');
 $languageFactory 	= new LanguageFactory(dirname(__FILE__) . '/languages', 'es');
 
@@ -82,14 +86,16 @@ $languageFactory 	= new LanguageFactory(dirname(__FILE__) . '/languages', 'es');
  * Las vistas solo pueden imprimirse desde este archivo.
  */
 
- define("IS_INDEX", true);
- 
+define("IS_INDEX", true);
+
 // Launch -------
 
 $decoded = Router::decode(
 	Parameters::get("r", 'GET', "common-home-index"), 
 	Router::TYPE_CONTROLLER
 );
+
+//print_r($decoded);
 
 $controller = $controllerFactory->get($decoded);
 

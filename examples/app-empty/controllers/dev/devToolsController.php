@@ -1,12 +1,13 @@
 <?php
 
-namespace MxSoftstart\FrameworkPhp\AppEmpty\controllers\common;
+namespace MxSoftstart\FrameworkPhp\AppEmpty\controllers\dev;
 
 use MxSoftstart\FrameworkPhp\AppEmpty\classes\Controller;
 use MxSoftstart\FrameworkPhp\AppEmpty\schemas\ExaExamplesSchema;
+use MxSoftstart\FrameworkPhp\classes\databases\SQL\Generator as GeneratorSQL;
 
-class CommonHomeController extends Controller {
-
+class DevToolsController extends Controller {
+    
 	function __construct() {
 		
 		parent::__construct();
@@ -14,10 +15,9 @@ class CommonHomeController extends Controller {
 	
 	public function index($datas = null) {
 
-		return "Hola mundo!!";
+		return $this->indexHTML();
 	}
-	
-	/*
+
 	public function indexText() {
 
 		$l = $this->loadLanguage($this->getCode());
@@ -55,8 +55,16 @@ class CommonHomeController extends Controller {
 	public function createDatabaseWS() {
 
 		$exaExamplesSchema = new ExaExamplesSchema();
-		d($exaExamplesSchema->build());
+		
+        d($exaExamplesSchema->build());
+
+		$sql = "SELECT * FROM Person";
+
+		$resp = $this->queryMySQL($sql);
+
+		print_r($resp);
+		
 	}
-	*/
+	
 }
 ?>
