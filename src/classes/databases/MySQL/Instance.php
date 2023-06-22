@@ -31,7 +31,7 @@ class Instance {
 
         if ($this->conn == null) {
 
-            $this->conn = new mysqli($server["HOST"], $server["USER"], $server["PASSWORD"], $server["NAME"], $server["PORT"]);
+            $this->conn = new \mysqli($server["HOST"], $server["USER"], $server["PASSWORD"], $server["NAME"], $server["PORT"]);
             
             if (mysqli_connect_errno()) {
                 printf("Error en la conexion: %s\n", mysqli_connect_error());

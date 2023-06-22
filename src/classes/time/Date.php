@@ -112,13 +112,13 @@ class Date {
 	public function addDays($quantity) {
 		$timestamp = strtotime($this->getFormated("YYYY-mm-dd hh:mm:ss"));
 		$newTimestamp = strtotime("+$quantity day", $timestamp);
-		return new MyDate(date("Y/m/d", $newTimestamp));
+		return new Date(date("Y/m/d", $newTimestamp));
 	}
 
 	public function addWeeks($quantity) {
 		$timestamp = strtotime($this->getFormated("YYYY-mm-dd hh:mm:ss"));
 		$newTimestamp = strtotime("+$quantity week", $timestamp);
-		return new MyDate(date("Y/m/d", $newTimestamp));
+		return new Date(date("Y/m/d", $newTimestamp));
 
 		//$timestamp = strtotime($date);
 		//$newTimestamp = strtotime("+$quantity week", $timestamp);
@@ -187,7 +187,7 @@ class Date {
 		$string = str_pad($dayFinal, 2, "0", STR_PAD_LEFT) . "/" . str_pad($monthFinal, 2, "0", STR_PAD_LEFT) . "/" . $yearFinal;
 
 		// regresar un objeto de tipo fecha pero con la quincena avanzada.
-		return new MyDate($string);
+		return new Date($string);
 
 		/*
 		if ($isReverse == false) {
@@ -252,7 +252,7 @@ class Date {
 		$string = str_pad($dayFinal, 2, "0", STR_PAD_LEFT) . "/" . str_pad($monthFinal, 2, "0", STR_PAD_LEFT) . "/" . $yearFinal;
 
 		// regresar un objeto de tipo fecha pero con la quincena avanzada.
-		return new MyDate($string);
+		return new Date($string);
 
 		//return str_pad($dayFinal, 2, "0", STR_PAD_LEFT) . "-" . str_pad($monthFinal, 2, "0", STR_PAD_LEFT) . "-" . $yearFinal;
 	}
