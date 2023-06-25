@@ -1,5 +1,7 @@
 <?php
 
+namespace MxSoftstart\FrameworkPhp\classes\time;
+
 class Date {
 
 	private $string = "";
@@ -16,14 +18,14 @@ class Date {
 	
 	public function isDate() {
 
-		if (DateTime::createFromFormat("d/m/Y", $this->string) !== false) return true;
-		if (DateTime::createFromFormat("Y/m/d", $this->string) !== false) return true;
-		if (DateTime::createFromFormat("d/m/Y H:i:s", $this->string) !== false) return true;
-		if (DateTime::createFromFormat("Y/m/d H:i:s", $this->string) !== false) return true;
-		if (DateTime::createFromFormat("d-m-Y", $this->string) !== false) return true;
-		if (DateTime::createFromFormat("Y-m-d", $this->string) !== false) return true;
-		if (DateTime::createFromFormat("d-m-Y H:i:s", $this->string) !== false) return true;
-		if (DateTime::createFromFormat("Y-m-d H:i:s", $this->string) !== false) return true;
+		if (\DateTime::createFromFormat("d/m/Y", $this->string) !== false) return true;
+		if (\DateTime::createFromFormat("Y/m/d", $this->string) !== false) return true;
+		if (\DateTime::createFromFormat("d/m/Y H:i:s", $this->string) !== false) return true;
+		if (\DateTime::createFromFormat("Y/m/d H:i:s", $this->string) !== false) return true;
+		if (\DateTime::createFromFormat("d-m-Y", $this->string) !== false) return true;
+		if (\DateTime::createFromFormat("Y-m-d", $this->string) !== false) return true;
+		if (\DateTime::createFromFormat("d-m-Y H:i:s", $this->string) !== false) return true;
+		if (\DateTime::createFromFormat("Y-m-d H:i:s", $this->string) !== false) return true;
 		
 		return false;
 	}
