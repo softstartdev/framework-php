@@ -45,7 +45,7 @@ class Config {
 			// es un archivo config normal, se carga.
 
 			require_once($file);
-			$this->configs = array_merge($this->configs, $config);
+			$this->configs = array_merge_recursive($this->configs, $config);
 
 		} else {
 
@@ -60,7 +60,7 @@ class Config {
 				// es el environment solicitado, cargarlo.
 				
 				require_once($file);
-				$this->configs = array_merge($this->configs, $config);
+				$this->configs = array_merge_recursive($this->configs, $config);
 			}
 		}
 	}
