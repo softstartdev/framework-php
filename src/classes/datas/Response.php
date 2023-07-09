@@ -125,5 +125,26 @@ abstract class Response {
         }
     }
     
+    /*
+    public function response($status, $messages, $datas) {
+
+        return json_encode(array(
+            "status"    => $status,
+            "messages"  => $messages,
+            "datas"     => $datas,
+            "total"     => $this->is_array_list($datas) ? count($datas) : ""
+        ));
+    }
+
+    public function is_array_list($array) {
+        
+        if (is_array($array)){
+            if ($array === []) return true;
+            return array_keys($array) === range(0, count($array) - 1);
+        } else {
+            return false;
+        }
+    }
+    */
 }
 ?>
