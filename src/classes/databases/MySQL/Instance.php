@@ -69,12 +69,19 @@ class Instance {
         $result["status"] = "OK";
 
         $this->conn->autocommit(true);
-
+        
         $results = $this->conn->query($sql) or die($this->conn->error . __LINE__);
-        $result["resource"] = $results;
 
-        if ($results instanceof mysqli_result) {
-            
+        //var_dump($results);
+        //$result["resource"] = $results;
+        
+        if ($results instanceof \mysqli_result) {
+        //if (gettype($results) == "resource") {
+        //if ($results instanceof MySQLi) { 
+        //if (is_a($results, 'mysqli')) {
+        //if (is_object($results) && get_class($results) == 'mysqli') {
+        //if($results->num_rows > 0) {
+            //echo "ENTRE";
             $i = 0;
             $datas = array();
             
@@ -85,8 +92,9 @@ class Instance {
 
             $result["datas"] = $datas;
             $result["total"] = $i;
-
+            
         } else {
+            //echo "NO ENTRE";
             $result["newId"] = $this->conn->insert_id;
         }
         
