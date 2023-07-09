@@ -1,10 +1,14 @@
 <?php
+
+namespace MxSoftstart\FrameworkPhp\classes\MVCL;
+
+use MxSoftstart\FrameworkPhp\classes\MVCL\Controller;
 use MxSoftstart\FrameworkPhp\classes\time\Date;
 
-abstract class JsonController extends genericController {
+abstract class JsonController extends Controller {
     
     public $model   = null;
-    public $keyId = "id";
+    public $keyId   = "id";
     public $keyNew  = "NEW";
 
     function __construct() { }
@@ -111,7 +115,7 @@ abstract class JsonController extends genericController {
         
         return $this->response("OK", array("Operación realizada con éxito"), $modified);
     }
-
+    
     public function del() {
 
         $datas = $_REQUEST["datas"];
@@ -136,6 +140,8 @@ abstract class JsonController extends genericController {
         return $this->response("OK", array("Operación realizada con éxito"), "");
     }
     
+    public abstract function response($code, $messages = array(), $datas = null, $total = "");
+
 }
 
 ?>
