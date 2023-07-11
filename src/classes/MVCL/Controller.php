@@ -98,7 +98,8 @@ abstract class Controller {
 
     //methods -------------------------------
     
-    abstract function index($datas = null);
+    //abstract function index($datas = null);
+    abstract function index();
     
     /*
         public function render($code) {
