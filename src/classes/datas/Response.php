@@ -47,7 +47,7 @@ abstract class Response {
                                 
                                 $parts = explode("_", $key);
                                 if (substr($parts[1], 0, 2) == "Is"  || substr($parts[1], 0, 4) == "Have") {
-                                    $data[$key] = $this->formatBoolean($data[$key]);
+                                    $data[$key] = Response::formatBoolean($data[$key]);
                                 }
                             }
                         }
@@ -66,7 +66,7 @@ abstract class Response {
                         foreach ($keys as $key) {
                             $parts = explode("_", $key);
                             if (substr($parts[1], 0, 2) == "Is"  || substr($parts[1], 0, 4) == "Have") {
-                                $datas[$key] = $this->formatBoolean($datas[$key]);
+                                $datas[$key] = Response::formatBoolean($datas[$key]);
                             }
                         }
                     }
@@ -100,8 +100,8 @@ abstract class Response {
         return (isset($_GET['callback'])) ? $_GET['callback'] . "(" . $json . ")" : $json;
     }
     
-    private function formatBoolean($value) {
-
+    private static function formatBoolean($value) {
+        
         $formatBoolean = isset($_GET['formatBoolean']) ? $_GET['formatBoolean'] : 'false';
         
         if ($formatBoolean == "zero") {
