@@ -749,14 +749,24 @@ class Decoder {
 
         foreach ($decodedQuery['fields'] as $code) {
 
-            $code = trim($code);
+            $code = trim($code);            // limpiar espacios vacios en el código.
             
             $parts = explode("=", $code);
             
             $field = trim($parts[0]);
             $value = trim($parts[1]);
 
-            $list[$field] = $value;
+            $parts2 = explode("_", $field);
+
+            if (count($parts2) == 1) {
+                $tablename = $main;
+                $key = $parts2[0];
+                $list[$tablename . "_" . ucfirst($key)] = $value;
+            }
+
+            if (count($parts2) > 1) {
+                $list[$field] = $value;
+            }
             
             /*
             $code = trim($code);            // limpiar espacios vacios en el código.
