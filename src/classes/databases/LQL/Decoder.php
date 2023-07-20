@@ -746,12 +746,17 @@ class Decoder {
         // decodificar los campos y obtener informacion.
 
         $list = array();
+        
+        //print_r($decodedQuery['fields']);
 
         foreach ($decodedQuery['fields'] as $code) {
 
             $code = trim($code);            // limpiar espacios vacios en el código.
             
-            $parts = explode("=", $code);
+            //FIX para explode cuando llega el operator =
+            $str = "**=**=**";
+            $code = Decoder::replaceFirst("=", $str, $code);
+            $parts = explode($str, $code);
             
             $field = trim($parts[0]);
             $value = trim($parts[1]);
@@ -769,34 +774,43 @@ class Decoder {
             }
             
             /*
-            $code = trim($code);            // limpiar espacios vacios en el código.
-            
-            if ($code == "") continue;      // omitir códigos vacios.
-            
-            $parts = explode(" = ", $code);
             $paths = explode(".", trim($parts[0]));
-            //print_r($parts);
-            //print_r($paths);
-            if (count($paths) == 1) {
-                $key       = trim($parts[0]);
-                $tablename = $main;
-            }
+            print_r($parts);
+            print_r($paths);
 
+            echo "----";
+            */
+
+            /*
+            if (count($paths) == 1) {
+                //$key       = trim($parts[0]);
+                //$tablename = $main;
+                //$list[$tablename . "_" . ucfirst($key)] = $value;
+                $list[$parts[0]] = $value;
+            }
+            */
+
+            /*
             if (count($paths) > 1) {
                 $key       = trim(array_pop($paths));
                 $tablename = trim(array_pop($paths));
 
                 //fix:
-                $key = trim(str_replace("=", "", $key));
+                //$key = trim(str_replace("=", "", $key));
+
+                $list[$tablename . "_" . ucfirst($key)] = $value;
             }
-
-            $value = trim($parts[1]);
-
-            $list[$tablename . "_" . ucfirst($key)] = $value;
             */
+
         }
 
         return $list;
+    }
+    
+    //Aux
+    public static function replaceFirst($from, $to, $subject) {
+        $from = '/' . preg_quote($from, '/') . '/';
+        return preg_replace($from, $to, $subject, 1);
     }
 
     //OK
